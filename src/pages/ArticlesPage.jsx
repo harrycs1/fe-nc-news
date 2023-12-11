@@ -1,7 +1,7 @@
 import { ArticlesList } from "../components/ArticlesList"
 
-export const ArticlesPage = ({ articles }) => {
+export const ArticlesPage = () => {
     return (
-        <ArticlesList articles={articles}/>
+        <ArticlesList />
     )
 }
