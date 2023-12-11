@@ -3,4 +3,25 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  box-sizing: border-box;
+}
+
+.loading-spinner {
+  margin: auto;
+  border: 20px solid rgb(239, 250, 250);
+  border-radius: 50%;
+  border-top: 20px solid rgb(67, 125, 125);
+  width: 130px;
+  height: 130px;
+  animation: spinner 2s linear infinite;
+}
+
+.article-list {
+  /* border: 1px red solid; */
+  list-style: none;
+  padding-left: 0;
+}
+
+.article-card {
+  border: 1px white solid;
 }
