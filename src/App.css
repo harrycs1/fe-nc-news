@@ -3,40 +3,25 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  box-sizing: border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.loading-spinner {
+  margin: auto;
+  border: 20px solid rgb(239, 250, 250);
+  border-radius: 50%;
+  border-top: 20px solid rgb(67, 125, 125);
+  width: 130px;
+  height: 130px;
+  animation: spinner 2s linear infinite;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.article-list {
+  /* border: 1px red solid; */
+  list-style: none;
+  padding-left: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.article-card {
+  border: 1px white solid;
 }
