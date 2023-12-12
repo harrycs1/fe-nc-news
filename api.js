@@ -16,7 +16,7 @@ export const getArticleById = (article_id) => {
     return ncNewsApi.get(`/articles/${article_id}`)
 }
 
-const upvote = {"incvotes" : 1};
+const upvote = {"inc_votes" : 1};
 
 export const patchArticleVotes = (article_id) => {
     return ncNewsApi.patch(`/articles/${article_id}`, upvote)
