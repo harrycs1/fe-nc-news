@@ -2,6 +2,7 @@ import Loading from './Loading'
 import { ArticleCard } from './ArticleCard'
 import { getArticles } from "../../api"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom";
 
 export const ArticlesList = () => {
     const [articles, setArticles] = useState([]);
@@ -20,7 +21,7 @@ export const ArticlesList = () => {
         .finally(() => {
             setIsLoading(false);
         });
-    }, [])
+    }, []);
 
     if (isError) return <p>Something went wrong</p>;
     if (isLoading) return <Loading />;  
@@ -31,9 +32,11 @@ export const ArticlesList = () => {
         <ul className='article-list'>
             {articles.map((article) => {
                 return (
-                    <li key={article.article_id} className='article-card'>
-                        <ArticleCard article={article}/>
-                    </li>
+                    <Link to={`/articles/${article.article_id}`} key={article.article_id}>
+                        <li className='article-card'>
+                            <ArticleCard article={article}/>
+                        </li>
+                    </Link>
                 )
             })}
         </ul>

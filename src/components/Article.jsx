@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import { getArticleById } from "../../api";
 import Loading from './Loading'
+import { CommentsList } from "./CommentsList";
 
 export const Article = () => {
     const { article_id } = useParams();
@@ -35,6 +36,7 @@ export const Article = () => {
         <h5>Comment count: {article.comment_count}</h5>
         <p>{article.body}</p>
         <img src={`${article.article_img_url}`}></img>
+        <CommentsList />
         </>
     )
 }
