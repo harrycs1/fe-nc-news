@@ -19,9 +19,9 @@ export const Article = () => {
         .catch((err) => {
             setIsError(true);
           })
-          .finally(() => {
+        .finally(() => {
             setIsLoading(false);
-          });
+        });
     }, [])
 
     if (isError) return <p>Something went wrong</p>;

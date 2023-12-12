@@ -16,3 +16,6 @@ export const getArticleById = (article_id) => {
     return ncNewsApi.get(`/articles/${article_id}`)
 }
 
+export const postArticleComment = (article_id, newComment) => {
+    return ncNewsApi.post(`/articles/${article_id}/comments`, newComment)
+}

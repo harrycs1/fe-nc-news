@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom"
-import { getCommentsByArticleId } from "../../api";
+import { getCommentsByArticleId, postArticleComment } from "../../api";
 import { useEffect, useState } from "react";
 import { CommentCard } from "./CommentCard";
+import { PostComment } from "./PostComment"
 import Loading from "./Loading";
 
 export const CommentsList = () => {
@@ -30,10 +31,11 @@ export const CommentsList = () => {
     return (
         <>
         <h1>Comments</h1>
+        <PostComment key="postComment" comments={comments} setComments={setComments} article_id={article_id}/>
         <ul className="comment-list">
             {comments.map((comment) => {
                 return (
-                    <li key={comment.comment_id} className="comment-card">
+                    <li key={`comment_id:${comment.comment_id}`} className="comment-card">
                         <CommentCard comment={comment}/>
                     </li>
                 )
