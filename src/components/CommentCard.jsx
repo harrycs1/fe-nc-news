@@ -19,8 +19,14 @@ export const CommentCard = ({ comment, setComments }) => {
                 })
             })
         })
-        .catch(({response}) => {
-            setDeleteError(response.data.msg)
+        .catch((error) => {
+            if (error.response) {
+                setDeleteError(error.response.data.msg)
+            } else if (error.request) {
+                setDeleteError('No internet connection')
+            }
+        })
+        .finally(() => {
             setTimeout(() => {
                 setDeleteError('')
                 setIsDeleting(false)
