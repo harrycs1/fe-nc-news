@@ -31,9 +31,9 @@ export const PostComment = ({comments, setComments, article_id}) => {
                     setCommentInput('');
                 })
                 .catch((error) => {
+                    setComments(() => ([...comments]))
                     if (error.response) {
                         setIsCommentError(error.response.data.msg);
-                        setComments(() => ([...comments]))
                         setTimeout(() => {
                             setIsCommentError('');   
                         }, 3000)
