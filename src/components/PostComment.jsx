@@ -14,7 +14,6 @@ export const PostComment = ({comments, setComments, article_id}) => {
 
     function handlePostComment(e) {
         setIsSubmitDisabled(true);
-        setCommentInput('');
         e.preventDefault();
 
         if (!commentInput) setIsCommentError('Your comment is empty')
@@ -28,12 +27,19 @@ export const PostComment = ({comments, setComments, article_id}) => {
 
             setTimeout(() => {
                 postArticleComment(article_id, newComment)
-                .catch(({ response }) => {
-                    setIsCommentError(response.data.msg);
-                    setComments(() => ([...comments]))
-                    setTimeout(() => {
-                        setIsCommentError('');   
-                    }, 3000)
+                .then(() => {
+                    setCommentInput('');
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        setIsCommentError(response.data.msg);
+                        setComments(() => ([...comments]))
+                        setTimeout(() => {
+                            setIsCommentError('');   
+                        }, 3000)
+                    } else if (error.request) {
+                        setIsCommentError('No internet connection')
+                    }
                 })
                 .finally(() => {
                     setIsSubmitDisabled(false)

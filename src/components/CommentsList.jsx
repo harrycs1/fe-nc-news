@@ -33,7 +33,6 @@ export const CommentsList = () => {
         <h1>Comments</h1>
         <PostComment key="postComment" comments={comments} setComments={setComments} article_id={article_id}/>
         <ul className="comment-list">
-            {/* {console.log(comments)} */}
             {comments.map((comment) => {
                 return (
                     <li key={`comment_id:${comment.comment_id}`} className="comment-card">
