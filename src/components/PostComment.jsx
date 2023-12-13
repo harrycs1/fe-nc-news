@@ -32,7 +32,7 @@ export const PostComment = ({comments, setComments, article_id}) => {
                 })
                 .catch((error) => {
                     if (error.response) {
-                        setIsCommentError(response.data.msg);
+                        setIsCommentError(error.response.data.msg);
                         setComments(() => ([...comments]))
                         setTimeout(() => {
                             setIsCommentError('');   
