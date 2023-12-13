@@ -1,32 +1,37 @@
 import { deleteComment } from "../../api"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { UserContext } from "../contexts/User"
 
-export const CommentCard = ({ comment, setComments, setDeleteError }) => {
-    const {user} = useContext(UserContext)
+export const CommentCard = ({ comment, setComments }) => {
+    const {user} = useContext(UserContext);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [deleteError, setDeleteError] = useState('');
 
     function handleDeleteComment() {
-        setComments((currentComments) => {
-            return currentComments.filter((commentObj) => {
-                return commentObj.comment_id !== comment.comment_id
-            })
-        })
+
+        setIsDeleting(true)
 
         deleteComment(comment.comment_id)
+        .then(() => {
+            setComments((currentComments) => {
+                return currentComments.filter((commentObj) => {
+                    return commentObj.comment_id !== comment.comment_id
+                })
+            })
+        })
         .catch(({response}) => {
             setDeleteError(response.data.msg)
             setTimeout(() => {
                 setDeleteError('')
+                setIsDeleting(false)
             }, 3000)
         })
-
-
     }
 
     return (
         <>
-            <p>{comment.body}</p>
-            {comment.author === user ? <button onClick={handleDeleteComment}>Delete</button> : null}
+            {isDeleting ? (deleteError ? <p>{`Error: ${deleteError}. Please try again.`}</p> : <p>Deleting...</p>) : <p>{comment.body}</p>}
+            {comment.author === user ? <button onClick={handleDeleteComment} disabled={isDeleting}>Delete</button> : null}
         </>
     )
 }

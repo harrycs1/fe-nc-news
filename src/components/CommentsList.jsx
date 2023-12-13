@@ -9,7 +9,6 @@ export const CommentsList = () => {
     const [comments, setComments] = useState([]);
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [deleteError, setDeleteError] = useState('');
 
     useEffect(() => {
         getCommentsByArticleId(article_id)
@@ -32,15 +31,12 @@ export const CommentsList = () => {
         <>
             <h1>Comments</h1>
             <ul className="comment-list">
-            {deleteError ? <p>{`Error: ${deleteError}. Please try again.`}</p> : null}
                 {comments.map((comment) => {
                     return (
                         <li key={comment.comment_id} className="comment-card">
                             <CommentCard 
                                 comment={comment} 
                                 setComments={setComments}
-                                deleteError={deleteError}
-                                setDeleteError={setDeleteError}
                             />
                         </li>
                     )
