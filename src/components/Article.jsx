@@ -54,7 +54,7 @@ export const Article = () => {
         <button onClick={handleUpvote}>Upvote</button>
         {isVotingError ? <p>Couldn't upvote! Please try again.</p> : null}
         <p>{article.body}</p>
-        <img src={`${article.article_img_url}`}></img>
+        <img src={`${article.article_img_url}`} className="article-img"></img>
         <CommentsList />
         </>
     )
