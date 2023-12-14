@@ -34,14 +34,14 @@ export const PostComment = ({comments, setComments, article_id}) => {
                     setComments(() => ([...comments]))
                     if (error.response) {
                         setIsCommentError(error.response.data.msg);
-                        setTimeout(() => {
-                            setIsCommentError('');   
-                        }, 3000)
                     } else if (error.request) {
                         setIsCommentError('No internet connection')
                     }
                 })
                 .finally(() => {
+                    setTimeout(() => {
+                        setIsCommentError('');   
+                    }, 3000)
                     setIsSubmitDisabled(false)
                 })
             }, 1000)
