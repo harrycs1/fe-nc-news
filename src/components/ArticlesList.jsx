@@ -2,15 +2,19 @@ import Loading from './Loading'
 import { ArticleCard } from './ArticleCard'
 import { getArticles } from "../../api"
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export const ArticlesList = () => {
     const [articles, setArticles] = useState([]);
     const [isError, setIsError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const topicQuery = searchParams.get('topic');
+
+    const params = new URLSearchParams(searchParams);
 
     useEffect(() => {
-        getArticles()
+        getArticles(params)
         .then(({ data }) => {
             const articles = data.articles
             setArticles(articles);
@@ -21,7 +25,7 @@ export const ArticlesList = () => {
         .finally(() => {
             setIsLoading(false);
         });
-    }, []);
+    }, [topicQuery]);
 
     if (isError) return <p>Something went wrong</p>;
     if (isLoading) return <Loading />;  
