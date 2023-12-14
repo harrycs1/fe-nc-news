@@ -26,6 +26,10 @@ export const patchArticleVotes = (article_id) => {
     return ncNewsApi.patch(`/articles/${article_id}`, upvote)
 }
 
+export const deleteComment = (comment_id) => {
+    return ncNewsApi.delete(`/comments/${comment_id}`)
+}
+
 export const getTopics = () => {
     return ncNewsApi.get(`/topics`)
 }
