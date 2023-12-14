@@ -4,9 +4,9 @@ export const ArticleCard = ({ article }) => {
     return (
         <>
             <h2 className="article-title">{article.title}</h2>
-            <h3 className="article-author">{article.author}</h3>
-            <h4 className="article-comments">Comments: {article.comment_count}</h4>
-            <h5 className="article-created">{article.created_at}</h5>
+            <p className="article-author">{article.author}</p>
+            <p className="article-comments">{article.comment_count} comments</p>
+            <p className="article-created">{article.created_at.slice(0,10)}</p>
             <p className="article-votes">Votes: {article.votes}</p>
         </>
     )

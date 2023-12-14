@@ -18,7 +18,7 @@ body {
 
 .main-content {
   padding: 0 2rem;
-  height: 80vh;
+  height: 75vh;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
   overflow-y: scroll; 
@@ -46,6 +46,7 @@ body {
 
 .article-list > a {
   text-decoration: none;
+  color: white;
 }
 
 .dropdown-container {
@@ -83,7 +84,7 @@ body {
   border: 1px white solid;
   display: grid;
   grid-template-columns: repeat(12, [col-start] 1fr);
-  grid-template-rows: repeat(3, [col-start] 1fr);
+  grid-template-rows: repeat(3, [col-start] auto);
   gap: 5px;
   padding: 1em;
   margin-bottom: 1em;
@@ -95,15 +96,16 @@ body {
   margin: 0;
   display: flex;
   align-items: center;
-  justify-content: start;
 }
 
 .article-author {
+  justify-content: start;
   grid-row: 1 / span 1;
   grid-column: col-start / span 5;
 }
 
 .article-created {
+  justify-content: end;
   grid-row: 1 / 2;
   grid-column: 6 / span 7;
 }
@@ -115,13 +117,15 @@ body {
 }
 
 .article-comments {
+  justify-content: start;
   grid-row: 3 / span 1;
-  grid-column: 4 / span 3;
+  grid-column: 5 / span 6;
 }
 
 .article-votes {
+  justify-content: start;
   grid-row: 3 / span 1;
-  grid-column: col-start / span 3;
+  grid-column: col-start / span 4;
 }
 
 .article-img {
@@ -132,7 +136,7 @@ header {
   padding: 0;
   /* border: red 1px solid; */
   border-bottom: 1px white solid;
-  height: 10vh;
+  height: 15vh;
 }
 
 header > * {
@@ -140,7 +144,7 @@ header > * {
 }
 
 footer {
-  border: red solid 1px;
+  /* border: red solid 1px; */
   height: 10vh;
   display: flex;
   align-items: center;
@@ -164,6 +168,7 @@ footer > a > p {
   margin: 0;
   padding: 1em; 
   /* border: red 1px solid; */
+  overflow-x:scroll
 }
 
 .topic-card {
@@ -200,7 +205,7 @@ footer > a > p {
 
 .form-input-textarea {
   width: 100%;
-  height: 50vh;
+  height: 40vh;
   resize: none;
 }
 
