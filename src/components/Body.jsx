@@ -3,6 +3,7 @@ import { CommentsList } from "./CommentsList";
 import { Article } from './Article';
 import { ArticlesPage } from '../pages/ArticlesPage';
 import { HomePage } from "../pages/HomePage";
+import { PostArticlePage } from "../pages/PostArticlePage";
 
 export const Body = ({ topics }) => {
     return (
@@ -12,6 +13,7 @@ export const Body = ({ topics }) => {
                 <Route path="/articles/:article_id" element={<Article/>}></Route>
                 <Route path="/" element={<HomePage/>}></Route>
                 <Route path="/articles" element={<ArticlesPage/>}></Route>
+                <Route path="/post" element={<PostArticlePage/>}></Route>
             </Routes>
         </section>
     )
