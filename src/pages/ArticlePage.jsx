@@ -5,7 +5,7 @@ import Loading from './Loading'
 import { ErrorPage } from "../pages/ErrorPage";
 import { CommentsList } from "./CommentsList";
 
-export const Article = () => {
+export const ArticlePage = () => {
     const { article_id } = useParams();
     const [article, setArticle] = useState({});
     const [isLoading, setIsLoading] = useState(true);

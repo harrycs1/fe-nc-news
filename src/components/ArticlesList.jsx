@@ -11,11 +11,13 @@ export const ArticlesList = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [searchParams, setSearchParams] = useSearchParams();
     const topicQuery = searchParams.get('topic');
+    const sortQuery = searchParams.get('sort_by');
+    const orderQuery = searchParams.get('order');
 
     const params = new URLSearchParams(searchParams);
 
     useEffect(() => {
-        getArticles(params)
+        getArticles(searchParams)
         .then(({ data }) => {
             const articles = data.articles
             setArticles(articles);
@@ -26,7 +28,17 @@ export const ArticlesList = () => {
         .finally(() => {
             setIsLoading(false);
         });
-    }, [topicQuery]);
+    }, [topicQuery, sortQuery, orderQuery]);
+
+    function handleSortBy(e) {
+        params.set('sort_by', e.target.value)
+        setSearchParams(params)
+    }
+
+    function handleOrderBy(e) {
+        params.set('order', e.target.value)
+        setSearchParams(params)
+    }
 
     if (isError) return <ErrorPage error={isError}/>;
     if (isLoading) return <Loading />;  
@@ -34,6 +46,20 @@ export const ArticlesList = () => {
     return (
         <>
         <h1>Articles</h1>
+        <div className='dropdown-container'>
+            <p>Sort by:</p>
+            <select onChange={handleSortBy} value={searchParams.get('sort_by') || 'created_at'}>
+                <option value='created_at'>Date</option>
+                <option value='comment_count'>Comment Count</option>
+                <option value='votes'>Votes</option>
+                <option value='author'>Author</option>
+                <option value='title'>Title</option>
+            </select>
+            <select onChange={handleOrderBy} value={searchParams.get('order') || 'desc'}>
+                <option value='desc'>Descending</option>
+                <option value='asc'>Ascending</option>
+            </select>
+        </div>
         <ul className='article-list'>
             {articles.map((article) => {
                 return (
