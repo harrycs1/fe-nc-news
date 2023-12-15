@@ -17,6 +17,7 @@ body {
 }
 
 .main-content {
+  /* border: 1px solid red; */
   padding: 0 2rem;
   height: 75vh;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
@@ -220,4 +221,20 @@ footer > a > p {
 
 .form-input-button:hover {
   color: red;
+}
+
+.error-page {
+  /* background-color: black; */
+  height: 100%;
+  display: grid;
+  align-content: center;
+}
+
+.error-page > * {
+  margin: 0;
+}
+
+.error-page > a > button {
+  padding: 0.5em;
+  margin: 1em;
 }

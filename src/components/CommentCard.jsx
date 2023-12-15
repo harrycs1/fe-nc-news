@@ -20,11 +20,7 @@ export const CommentCard = ({ comment, setComments }) => {
             })
         })
         .catch((error) => {
-            if (error.response) {
-                setDeleteError(error.response.data.msg)
-            } else if (error.request) {
-                setDeleteError('No internet connection')
-            }
+            setDeleteError(error)
         })
         .finally(() => {
             setTimeout(() => {
@@ -36,7 +32,7 @@ export const CommentCard = ({ comment, setComments }) => {
 
     return (
         <>
-            {isDeleting ? (deleteError ? <p>{`Error: ${deleteError}. Please try again.`}</p> : <p>Deleting...</p>) : <p>{comment.body}</p>}
+            {isDeleting ? (deleteError ? <p>{`${deleteError.message}. Please try again.`}</p> : <p>Deleting...</p>) : <p>{comment.body}</p>}
             {comment.author === user ? <button onClick={handleDeleteComment} disabled={isDeleting}>Delete</button> : null}
         </>
     )

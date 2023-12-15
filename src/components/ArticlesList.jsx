@@ -3,10 +3,11 @@ import { ArticleCard } from './ArticleCard'
 import { getArticles } from "../../api"
 import { useEffect, useState } from "react"
 import { Link, useSearchParams } from "react-router-dom";
+import { ErrorPage } from '../pages/ErrorPage';
 
 export const ArticlesList = () => {
     const [articles, setArticles] = useState([]);
-    const [isError, setIsError] = useState(false);
+    const [isError, setIsError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [searchParams, setSearchParams] = useSearchParams();
     const topicQuery = searchParams.get('topic');
@@ -22,7 +23,7 @@ export const ArticlesList = () => {
             setArticles(articles);
         })
         .catch((err) => {
-            setIsError(true);
+            setIsError(err);
           })
         .finally(() => {
             setIsLoading(false);
@@ -39,7 +40,7 @@ export const ArticlesList = () => {
         setSearchParams(params)
     }
 
-    if (isError) return <p>Something went wrong</p>;
+    if (isError) return <ErrorPage error={isError}/>;
     if (isLoading) return <Loading />;  
 
     return (

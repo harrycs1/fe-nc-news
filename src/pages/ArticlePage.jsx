@@ -1,14 +1,15 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
-import { getArticleById, patchArticleVotes } from '../../api';
-import Loading from '../components/Loading'
-import { CommentsList } from "../components/CommentsList";
+import { getArticleById, patchArticleVotes } from "../../api";
+import Loading from './Loading'
+import { ErrorPage } from "../pages/ErrorPage";
+import { CommentsList } from "./CommentsList";
 
 export const ArticlePage = () => {
     const { article_id } = useParams();
     const [article, setArticle] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const [isError, setIsError] = useState(false);
+    const [isError, setIsError] = useState('');
     const [isVotingError, setIsVotingError] = useState(false);
 
     useEffect(() => {
@@ -18,7 +19,8 @@ export const ArticlePage = () => {
             setArticle(article);
         })
         .catch((err) => {
-            setIsError(true);
+            setIsError(err);
+            setArticle({});
           })
         .finally(() => {
             setIsLoading(false);
@@ -40,22 +42,22 @@ export const ArticlePage = () => {
         });
     }
 
-    if (isError) return <p>Something went wrong</p>;
+    if (isError) return <ErrorPage error={isError}/>;
     if (isLoading) return <Loading />;
 
     return (
         <>
-        <h1>{article.title}</h1>
-        <h2>{article.topic}</h2>
-        <h3>Author: {article.author}</h3>
-        <h4>Created at: {article.created_at}</h4>
-        <h5>Comment count: {article.comment_count}</h5>
-        <p>Votes: {article.votes}</p>
-        <button onClick={handleUpvote}>Upvote</button>
-        {isVotingError ? <p>Couldn't upvote! Please try again.</p> : null}
-        <p>{article.body}</p>
-        <img src={`${article.article_img_url}`} className="article-img"></img>
-        <CommentsList />
+            <h1>{article.title}</h1>
+            <h2>{article.topic}</h2>
+            <h3>Author: {article.author}</h3>
+            <h4>Created at: {article.created_at}</h4>
+            <h5>Comment count: {article.comment_count}</h5>
+            <p>Votes: {article.votes}</p>
+            <button onClick={handleUpvote}>Upvote</button>
+            {isVotingError ? <p>Couldn't upvote! Please try again.</p> : null}
+            <p>{article.body}</p>
+            <img src={`${article.article_img_url}`} className="article-img"></img>
+            <CommentsList />
         </>
     )
 }

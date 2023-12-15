@@ -32,11 +32,7 @@ export const PostComment = ({comments, setComments, article_id}) => {
                 })
                 .catch((error) => {
                     setComments(() => ([...comments]))
-                    if (error.response) {
-                        setIsCommentError(error.response.data.msg);
-                    } else if (error.request) {
-                        setIsCommentError('No internet connection')
-                    }
+                    setIsCommentError(error)
                 })
                 .finally(() => {
                     setTimeout(() => {
@@ -52,7 +48,7 @@ export const PostComment = ({comments, setComments, article_id}) => {
         <form onSubmit={handlePostComment}>
             <textarea maxLength="500" placeholder="Add a comment" onChange={handleCommentInput} value={commentInput} required></textarea>
             <button disabled={isSubmitDisabled}>Submit</button>
-            {isCommentError ? <p>{`Error: ${isCommentError}. Please try again.`}</p> : null}
+            {isCommentError ? <p>{`${isCommentError.message}. Please try again.`}</p> : null}
         </form>
     )
 }

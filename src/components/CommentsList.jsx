@@ -36,7 +36,7 @@ export const CommentsList = () => {
             {comments.map((comment) => {
                 return (
                     <li key={`comment_id:${comment.comment_id}`} className="comment-card">
-                        <CommentCard comment={comment}/>
+                        <CommentCard comment={comment} setComments={setComments}/>
                     </li>
                 )
             })}
