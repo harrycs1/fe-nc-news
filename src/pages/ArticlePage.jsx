@@ -1,10 +1,10 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
-import { getArticleById, patchArticleVotes } from "../../api";
-import Loading from './Loading'
-import { CommentsList } from "./CommentsList";
+import { getArticleById, patchArticleVotes } from '../../api';
+import Loading from '../components/Loading'
+import { CommentsList } from "../components/CommentsList";
 
-export const Article = () => {
+export const ArticlePage = () => {
     const { article_id } = useParams();
     const [article, setArticle] = useState({});
     const [isLoading, setIsLoading] = useState(true);
