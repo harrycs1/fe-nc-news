@@ -7,7 +7,7 @@ import { ErrorPage } from "../pages/ErrorPage";
 
 export const Body = ({ topics }) => {
     return (
-        <section className="main-content">
+        <main className="pt-4 mb-10">
             <Routes>
                 <Route path="/" element={<HomePage/>}></Route>
                 <Route path="/articles" element={<ArticlesPage/>}></Route>
@@ -15,6 +15,6 @@ export const Body = ({ topics }) => {
                 <Route path="/post" element={<PostArticlePage/>}></Route>
                 <Route path="*" element={<ErrorPage/>}></Route>
             </Routes>
-        </section>
+        </main>
     )
 }

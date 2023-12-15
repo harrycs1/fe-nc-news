@@ -1,12 +1,10 @@
 import { TopicsList } from "./TopicsList"
 import { Link } from "react-router-dom"
+import styles from "../style"
 
-export const Header = ({ topics}) => {
+export const Header = () => {
     return (
-        <header>
-            <Link to="/">
-                <h1>NC News</h1>
-            </Link>
+        <header className={`${styles.paddingX} sticky top-0 bg-primary border-b-[1px] border-[#242424]`}>
             <TopicsList/>
         </header>
     )

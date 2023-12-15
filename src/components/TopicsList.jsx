@@ -2,9 +2,12 @@ import { Link } from "react-router-dom";
 import { getTopics } from "../../api"
 import { useState, useEffect } from "react"
 import { capitaliseFirstLetter } from '../../utils/capitaliseFirstLetter'
+import close from '../assets/close.svg'
+import menu from '../assets/menu.svg'
 
 export const TopicsList = () => {
     const [topics, setTopics] = useState([])
+    const [toggle, setToggle] = useState(false)
 
     useEffect(() => {
         getTopics()
@@ -18,19 +21,46 @@ export const TopicsList = () => {
     }, [])
 
     return (
-        <>
-            <ul className="topic-list">
+        <nav className="w-full flex py-6 justify-between items-center navbar">
+            <Link to="/">
+                <h1 className="text-2xl font-bold">NC News</h1>
+            </Link>
+            <ul className="list-none sm:flex hidden justify-end items-center flex-1">
                 <Link to='/articles'>
-                    <li className="topic-card">All</li>
+                    <li className={`font-poppins font-normal cursor pointer text-[16px] text-white mr-10`}>All</li>
                 </Link>
                 {topics.map((topic) => {
                     return (
-                        <Link to={`articles?topic=${topic.slug}`} key={topic.slug}>
-                            <li className="topic-card">{capitaliseFirstLetter(topic.slug)}</li>
+                        <Link to={`articles?topic=${topic.slug}`} key={topic.slug} className={`font-poppins font-normal cursor-pointer text-[16px] text-white mr-10`}>
+                            <li>{capitaliseFirstLetter(topic.slug)}</li>
                         </Link>
                     )
                 })}
             </ul>
-        </>
+
+            <div className="sm:hidden flex flex-1 justify-end items-center">
+                <img 
+                    src={toggle ? close : menu} 
+                    alt="menu" 
+                    className="w-[28px] h-[28px] object-contain"
+                    onClick={() => setToggle((prev) => !prev)}
+                />
+                <div
+                    className={`${toggle ? 'flex' : 'hidden'} p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
+                    <ul className="list-none flex-col justify-end items-center flex-1">
+                        <Link to='/articles'>
+                            <li className={`font-poppins font-normal cursor pointer text-[16px] text-white mr-10`}>All</li>
+                        </Link>
+                        {topics.map((topic) => {
+                            return (
+                                <Link to={`articles?topic=${topic.slug}`} key={topic.slug} className={`font-poppins font-normal cursor-pointer text-[16px] text-white mb-4`}>
+                                    <li>{capitaliseFirstLetter(topic.slug)}</li>
+                                </Link>
+                            )
+                        })}
+                    </ul>
+                </div>
+            </div>
+        </nav>
     )
 }
