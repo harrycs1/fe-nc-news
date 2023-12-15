@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react";
 import { getArticleById, patchArticleVotes } from "../../api";
-import Loading from './Loading'
+import Loading from '../components/Loading'
 import { ErrorPage } from "../pages/ErrorPage";
-import { CommentsList } from "./CommentsList";
+import { CommentsList } from "../components/CommentsList";
 
 export const ArticlePage = () => {
     const { article_id } = useParams();
