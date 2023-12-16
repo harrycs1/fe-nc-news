@@ -29,18 +29,18 @@ export const CommentsList = () => {
     if (isLoading) return <Loading />;  
 
     return (
-        <>
-        <h1>Comments</h1>
-        <PostComment key="postComment" comments={comments} setComments={setComments} article_id={article_id}/>
-        <ul className="comment-list">
-            {comments.map((comment) => {
-                return (
-                    <li key={`comment_id:${comment.comment_id}`} className="comment-card">
-                        <CommentCard comment={comment} setComments={setComments}/>
-                    </li>
-                )
-            })}
-        </ul>
-        </>
+        <section>
+            <h2 className="text-xl font-bold mt-3 mb-2">Comments</h2>
+            <PostComment key="postComment" comments={comments} setComments={setComments} article_id={article_id}/>
+            <ul className="list-none mt-4">
+                {comments.map((comment) => {
+                    return (
+                        <li key={`comment_id:${comment.comment_id}`} className="className={`${styles.paddingX} ${styles.paddingY} mb-5 pb-5 border-b-[1px] border-[#404040]`}">
+                            <CommentCard comment={comment} setComments={setComments}/>
+                        </li>
+                    )
+                })}
+            </ul>
+        </section>
     )
 }
