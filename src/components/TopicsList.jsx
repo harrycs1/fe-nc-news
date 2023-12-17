@@ -6,7 +6,11 @@ import close from '../assets/close.svg'
 import menu from '../assets/menu.svg'
 
 export const TopicsList = () => {
-    const [topics, setTopics] = useState([])
+    const [topics, setTopics] = useState([
+        {slug: 'coding', description: 'Code is love, code is life'},
+        {slug: 'football', description: 'FOOTIE!'},
+        {slug: 'cooking', description: 'Hey good looking, what you got cooking?'}
+    ])
     const [toggle, setToggle] = useState(false)
 
     useEffect(() => {
