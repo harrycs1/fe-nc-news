@@ -34,7 +34,7 @@ export const ArticlesList = () => {
     }, [topicQuery, sortQuery, orderQuery]);
 
     if (isError) return <ErrorPage error={isError}/>;
-    if (isLoading) return <Loading />;  
+    if (isLoading) return <div className='h-screen'><Loading/></div>;  
 
     return (
         <>
@@ -45,7 +45,7 @@ export const ArticlesList = () => {
                 return (
                     <Link to={`/articles/${article.article_id}`} key={article.article_id}>
                         <li className={`${styles.paddingX} ${styles.paddingY} mb-4 border-[1px] border-[#404040] rounded-lg bg-[#242424] shadow`}>
-                            <ArticleCard article={article}/>
+                            {isLoading ? <Loading/>  : <ArticleCard article={article}/>}
                         </li>
                     </Link>
                 )

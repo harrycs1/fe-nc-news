@@ -7,15 +7,13 @@ import styles from "./style"
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-primary w-full min-h-screen text-white">
-        <div className={`${styles.flexCenter}`}>
-          <div className={`${styles.boxWidth}`}>
-            <Header />
-            <div className={`${styles.paddingX}`}>
-              <Body />
-            </div>
-            <Footer />
+      <div className={`bg-primary w-full min-h-screen text-white ${styles.flexCenter} ${styles.boxWidth}`}>
+        <div className={`${styles.boxWidth} flex flex-col justify-between min-h-screen`}>
+          <Header />
+          <div className={`${styles.paddingX}`}>
+            <Body />
           </div>
+          <Footer />
         </div>
       </div>
     </BrowserRouter>
