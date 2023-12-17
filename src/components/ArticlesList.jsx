@@ -44,7 +44,7 @@ export const ArticlesList = () => {
             {articles.map((article) => {
                 return (
                     <Link to={`/articles/${article.article_id}`} key={article.article_id}>
-                        <li className={`${styles.paddingX} ${styles.paddingY} mb-4 border-[1px] border-[#404040] rounded-lg bg-[#242424] shadow`}>
+                        <li className={`py-6 px-6 mb-4 border-[1px] border-[#404040] rounded-lg bg-[#242424] shadow`}>
                             {isLoading ? <Loading/>  : <ArticleCard article={article}/>}
                         </li>
                     </Link>

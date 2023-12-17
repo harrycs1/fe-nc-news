@@ -58,3 +58,19 @@ export const getTopics = () => {
     return ncNewsApi.get(`/topics`)
 }
 
+export const getUsers = () => {
+    return ncNewsApi
+    .get('/users')
+}
+
+export const getUserByUsername = (username) => {
+    return ncNewsApi
+    .get(`/users/${username}`)
+    .catch((error) => {
+        if (error.response) {
+            return Promise.reject({status: error.response.status, message: error.response.data.msg})
+        } else if (error.request) {
+            return Promise.reject({ message: error.message })
+        }
+    })
+}
