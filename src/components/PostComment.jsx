@@ -19,11 +19,11 @@ export const PostComment = ({comments, setComments, article_id}) => {
         if (!commentInput) setIsCommentError('Your comment is empty')
         else {
             const newComment = {
-                username: user,
+                username: user.username,
                 body: commentInput
             }
 
-            setComments(() => ([{...newComment, author: user, comment_id: '0', created_at: new Date().toISOString()}, ...comments]))
+            setComments(() => ([{...newComment, author: user.username, comment_id: '0', created_at: new Date().toISOString()}, ...comments]))
 
             setTimeout(() => {
                 postArticleComment(article_id, newComment)

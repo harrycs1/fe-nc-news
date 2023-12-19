@@ -6,7 +6,11 @@ import close from '../assets/close.svg'
 import menu from '../assets/menu.svg'
 
 export const TopicsList = () => {
-    const [topics, setTopics] = useState([])
+    const [topics, setTopics] = useState([
+        {slug: 'coding', description: 'Code is love, code is life'},
+        {slug: 'football', description: 'FOOTIE!'},
+        {slug: 'cooking', description: 'Hey good looking, what you got cooking?'}
+    ])
     const [toggle, setToggle] = useState(false)
 
     useEffect(() => {
@@ -46,7 +50,7 @@ export const TopicsList = () => {
                     onClick={() => setToggle((prev) => !prev)}
                 />
                 <div
-                    className={`${toggle ? 'flex' : 'hidden'} p-6 bg-black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
+                    className={`${toggle ? 'flex' : 'hidden'} p-6 bg-gradient-to-r to-primary from-secondary absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar`}>
                     <ul className="list-none flex-col justify-end items-center flex-1">
                         <Link to='/articles'>
                             <li className={`font-poppins font-normal cursor pointer text-[16px] text-white mr-10`}>All</li>
