@@ -37,20 +37,20 @@ export const ArticlesList = () => {
     if (isLoading) return <div className='h-screen'><Loading/></div>;  
 
     return (
-        <>
-        <h1 className='mb-2 text-2xl font-bold tracking-tight'>{topicQuery ? capitaliseFirstLetter(topicQuery) : "All"}</h1>
-        <SortBy params={params} searchParams={searchParams} setSearchParams={setSearchParams}/>
-        <ul className='list-none mt-4'>
-            {articles.map((article) => {
-                return (
-                    <Link to={`/articles/${article.article_id}`} key={article.article_id}>
-                        <li className={`py-6 px-6 mb-4 border-[1px] border-[#404040] rounded-lg bg-[#242424] shadow`}>
-                            {isLoading ? <Loading/>  : <ArticleCard article={article}/>}
-                        </li>
-                    </Link>
-                )
-            })}
-        </ul>
-        </>
+        <section>
+            <h1 className={`${styles.heading2}`}>{topicQuery ? capitaliseFirstLetter(topicQuery) : "All"}</h1>
+            <SortBy params={params} searchParams={searchParams} setSearchParams={setSearchParams}/>
+            <ul className='list-none mt-4'>
+                {articles.map((article) => {
+                    return (
+                        <Link to={`/articles/${article.article_id}`} key={article.article_id}>
+                            <li className={`py-6 px-6 mb-4 border-[1px] border-[#404040] rounded-lg bg-[#242424] shadow`}>
+                                {isLoading ? <Loading/>  : <ArticleCard article={article}/>}
+                            </li>
+                        </Link>
+                    )
+                })}
+            </ul>
+        </section>
     )
 }

@@ -74,3 +74,16 @@ export const getUserByUsername = (username) => {
         }
     })
 }
+
+export const postArticle = (newPost) => {
+    console.log(newPost)
+    return ncNewsApi
+    .post(`/articles`, newPost)
+    .catch((error) => {
+        if (error.response) {
+            return Promise.reject({status: error.response.status, message: error.response.data.msg})
+        } else if (error.request) {
+            return Promise.reject({ message: error.message })
+        }
+    })
+}

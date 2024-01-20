@@ -40,6 +40,9 @@ export const TopicsList = () => {
                         </Link>
                     )
                 })}
+                <Link to="/post" className="hidden lg:flex">
+                    <li className=" border px-2 py-1 rounded-xl">Add Article</li>
+                </Link>
             </ul>
 
             <div className="sm:hidden flex flex-1 justify-end items-center">
