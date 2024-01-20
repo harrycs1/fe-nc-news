@@ -7,7 +7,7 @@ import styles from "./style"
 function App() {
   return (
     <BrowserRouter>
-      <div className={`bg-primary w-full min-h-screen text-white ${styles.flexCenter} ${styles.boxWidth}`}>
+      <div className={`bg-primary w-full min-h-screen text-white ${styles.flexCenter}`}>
         <div className={`${styles.boxWidth} flex flex-col justify-between min-h-screen`}>
           <Header />
           <div className={`${styles.paddingX}`}>
